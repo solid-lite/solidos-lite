@@ -98,9 +98,12 @@ Current version string.
 
 ## Examples
 
-- [minimal.html](https://solid-lite.github.io/solidos-lite/minimal.html#me) - Turtle
-- [minimal-jsonld.html](https://solid-lite.github.io/solidos-lite/minimal-jsonld.html#me) - JSON-LD
-- [standalone.html](https://solid-lite.github.io/solidos-lite/standalone.html#me) - Full profile
+**[Browse all examples](https://solid-lite.github.io/solidos-lite/examples/)**
+
+- [Person Profile (JSON-LD)](https://solid-lite.github.io/solidos-lite/examples/person.html#me) - foaf:Person with photo and connections
+- [Bookmarks (Turtle)](https://solid-lite.github.io/solidos-lite/examples/bookmarks.html#bookmarks) - Organized link collection
+- [minimal.html](https://solid-lite.github.io/solidos-lite/minimal.html#me) - Minimal Turtle example
+- [minimal-jsonld.html](https://solid-lite.github.io/solidos-lite/minimal-jsonld.html#me) - Minimal JSON-LD example
 
 ## Benefits
 

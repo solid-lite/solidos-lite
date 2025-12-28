@@ -1,6 +1,6 @@
 {
   "name": "solidos-lite",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Lightweight SolidOS shim with data island support",
   "main": "solidos-lite.js",
   "scripts": {

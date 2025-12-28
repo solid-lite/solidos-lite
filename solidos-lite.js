@@ -1,5 +1,5 @@
 /**
- * solidos-lite v0.0.1
+ * solidos-lite v0.0.3
  * Lightweight SolidOS shim with data island support
  *
  * Intercepts RDF fetches to check for local data islands first,
@@ -11,7 +11,7 @@
 (function(global) {
 'use strict';
 
-const VERSION = '0.0.2'
+const VERSION = '0.0.3'
 
 // Load mashlib from CDN
 const MASHLIB_JS = 'https://cdn.jsdelivr.net/npm/mashlib/dist/mashlib.min.js'
