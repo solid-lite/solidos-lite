@@ -21,27 +21,11 @@ It automatically:
 
 ```html
 <!DOCTYPE html>
-<html>
-<head>
-  <script src="https://cdn.jsdelivr.net/npm/solidos-lite/solidos-lite.js"></script>
-</head>
-<body>
-
 <script type="text/turtle">
-@prefix : <#> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
-
-:me a foaf:Person ;
-    foaf:name "Alice" .
+<#me> a foaf:Person ; foaf:name "Alice" .
 </script>
-
-<div class="TabulatorOutline" id="DummyUUID" role="main">
-  <table id="outline"></table>
-  <div id="GlobalDashboard"></div>
-</div>
-
-</body>
-</html>
+<script src="https://cdn.jsdelivr.net/npm/solidos-lite/solidos-lite.js"></script>
 ```
 
 That's it! Visit `page.html#me` to see Alice's profile.
@@ -72,10 +56,11 @@ That's it! Visit `page.html#me` to see Alice's profile.
 
 ## How It Works
 
-1. **Auto-detection** - When the page loads, solidos-lite checks for data islands and a container
+1. **Auto-detection** - When the page loads, solidos-lite checks for data islands
 2. **Loads mashlib** - Dynamically loads mashlib + CSS from CDN
-3. **Parses data** - Turtle parsed directly, JSON-LD converted to Turtle (custom parser, no webpack chunks)
-4. **Renders** - Navigates to the URL fragment (e.g., `#me`) or shows document view
+3. **Creates UI** - Adds required DOM elements to body automatically
+4. **Parses data** - Turtle parsed directly, JSON-LD converted to Turtle (custom parser, no webpack chunks)
+5. **Renders** - Navigates to the URL fragment (e.g., `#me`) or shows document view
 
 ## API
 
@@ -93,7 +78,7 @@ SolidOSLite.parseAllIslands()
 
 ### `SolidOSLite.run(options)`
 
-Initialize and run the data browser. Called automatically if data island + container detected.
+Initialize and run the data browser. Called automatically if data island detected.
 
 ### `SolidOSLite.loadMashlib()`
 
@@ -119,6 +104,7 @@ Current version string.
 
 ## Benefits
 
+- **Zero boilerplate** - Just data + script tag, UI created automatically
 - **No CORS issues** - Data is in the page
 - **No server required** - Works with static HTML files
 - **Works offline** - Once loaded, no network needed

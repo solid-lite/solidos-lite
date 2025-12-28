@@ -3,28 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <title>Tim Berners-Lee (JSON-LD)</title>
-  <script src="https://cdn.jsdelivr.net/npm/solidos-lite/solidos-lite.js"></script>
 </head>
 <body>
 
 <script type="application/ld+json">
 {
   "@context": {
-    "foaf": "http://xmlns.com/foaf/0.1/",
-    "rdfs": "http://www.w3.org/2000/01/rdf-schema#"
+    "foaf": "http://xmlns.com/foaf/0.1/"
   },
   "@id": "#me",
   "@type": "foaf:Person",
   "foaf:name": "Tim Berners-Lee",
-  "foaf:img": { "@id": "https://timbl.solidcommunity.net/profile/TBL%20by%20coz%20Solid%20purple.png" },
-  "rdfs:comment": "Minimal JSON-LD example - no build step, no chunks!"
+  "foaf:img": { "@id": "https://timbl.solidcommunity.net/profile/TBL%20by%20coz%20Solid%20purple.png" }
 }
 </script>
 
-<div class="TabulatorOutline" id="DummyUUID" role="main">
-  <table id="outline"></table>
-  <div id="GlobalDashboard"></div>
-</div>
+<script src="https://cdn.jsdelivr.net/npm/solidos-lite/solidos-lite.js"></script>
 
 </body>
 </html>

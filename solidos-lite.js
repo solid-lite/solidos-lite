@@ -11,7 +11,7 @@
 (function(global) {
 'use strict';
 
-const VERSION = '0.0.1'
+const VERSION = '0.0.2'
 
 // Load mashlib from CDN
 const MASHLIB_JS = 'https://cdn.jsdelivr.net/npm/mashlib/dist/mashlib.min.js'
@@ -335,6 +335,38 @@ function parseAllIslands() {
 }
 
 /**
+ * Ensure the required DOM structure exists for the outliner
+ * Creates elements if missing, defaults to body
+ * @returns {HTMLElement} The container element
+ */
+function ensureContainer() {
+  // Look for existing container
+  let container = document.getElementById('DummyUUID')
+                || document.getElementById('PageBody')
+
+  // Default to body if no container found
+  if (!container) {
+    container = document.body
+  }
+
+  // Ensure outline table exists
+  if (!document.getElementById('outline')) {
+    const table = document.createElement('table')
+    table.id = 'outline'
+    container.appendChild(table)
+  }
+
+  // Ensure GlobalDashboard exists (for auth UI)
+  if (!document.getElementById('GlobalDashboard')) {
+    const dashboard = document.createElement('div')
+    dashboard.id = 'GlobalDashboard'
+    container.appendChild(dashboard)
+  }
+
+  return container
+}
+
+/**
  * Run the data browser with minimal setup
  * Automatically parses data islands and navigates to the URL fragment
  * @param {Object} options
@@ -354,6 +386,9 @@ function run(options = {}) {
   if (verbose) {
     console.log(`solidos-lite: Parsed ${count} data island(s)`)
   }
+
+  // Ensure DOM structure exists
+  ensureContainer()
 
   // Set up fetcher intercepts for the current page
   const pageBase = window.location.href.split('?')[0].split('#')[0]
@@ -396,9 +431,8 @@ global.SolidOSLite = { init, findDataIsland, parseAllIslands, run, loadMashlib, 
 // Auto-run if data island exists and DOM is ready
 async function autoRun() {
   const hasDataIsland = document.querySelector('script[type="text/turtle"], script[type="application/ld+json"]')
-  const hasContainer = document.getElementById('DummyUUID') || document.getElementById('PageBody')
 
-  if (hasDataIsland && hasContainer) {
+  if (hasDataIsland) {
     try {
       await loadMashlib()
       run()

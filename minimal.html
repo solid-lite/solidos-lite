@@ -3,29 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <title>Tim Berners-Lee</title>
-  <script src="https://cdn.jsdelivr.net/npm/solidos-lite/solidos-lite.js"></script>
 </head>
 <body>
 
 <script type="text/turtle">
 @prefix : <#> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
 :me a foaf:Person ;
     foaf:name "Tim Berners-Lee" ;
-    foaf:img <https://timbl.solidcommunity.net/profile/TBL%20by%20coz%20Solid%20purple.png> ;
-    rdfs:comment "Minimal example - just one script tag!" ;
-    foaf:knows :alice, :bob .
-
-:alice a foaf:Person ; foaf:name "Alice" .
-:bob a foaf:Person ; foaf:name "Bob" .
+    foaf:img <https://timbl.solidcommunity.net/profile/TBL%20by%20coz%20Solid%20purple.png> .
 </script>
 
-<div class="TabulatorOutline" id="DummyUUID" role="main">
-  <table id="outline"></table>
-  <div id="GlobalDashboard"></div>
-</div>
+<script src="https://cdn.jsdelivr.net/npm/solidos-lite/solidos-lite.js"></script>
 
 </body>
 </html>
