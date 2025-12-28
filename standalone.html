@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tim Berners-Lee</title>
+  <link rel="icon" href="https://solidproject.org/assets/img/favicon.ico">
+  <script src="./solidos-lite.js"></script>
+</head>
+<body>
+
+<!-- Data Island -->
+<script type="text/turtle">
+@prefix : <#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <http://schema.org/> .
+
+:me
+    a foaf:Person, schema:Person ;
+    foaf:name "Tim Berners-Lee" ;
+    foaf:givenName "Timothy" ;
+    foaf:familyName "Berners-Lee" ;
+    foaf:nick "timbl" ;
+    foaf:img <https://timbl.solidcommunity.net/profile/TBL%20by%20coz%20Solid%20purple.png> ;
+    foaf:homepage <https://www.w3.org/People/Berners-Lee/> ;
+    foaf:workplaceHomepage <https://www.w3.org/> ;
+    schema:jobTitle "Inventor of the World Wide Web" ;
+    rdfs:comment "This profile loaded from a data island - no server needed!" ;
+    foaf:knows :alice, :bob .
+
+:alice a foaf:Person ; foaf:name "Alice" .
+:bob a foaf:Person ; foaf:name "Bob" .
+</script>
+
+<!-- SolidOS Container -->
+<div class="TabulatorOutline" id="DummyUUID" role="main">
+  <table id="outline"></table>
+  <div id="GlobalDashboard"></div>
+</div>
+
+</body>
+</html>

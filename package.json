@@ -1,0 +1,27 @@
+{
+  "name": "solidos-lite",
+  "version": "0.0.1",
+  "description": "Lightweight SolidOS shim with data island support",
+  "main": "solidos-lite.js",
+  "scripts": {
+    "start": "python3 -m http.server 8080"
+  },
+  "keywords": [
+    "solid",
+    "solidos",
+    "rdf",
+    "linked-data",
+    "data-island",
+    "mashlib"
+  ],
+  "author": "Melvin Carvalho",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/solid-lite/solidos-lite.git"
+  },
+  "homepage": "https://solid-lite.github.io/solidos-lite/",
+  "peerDependencies": {
+    "mashlib": ">=2.0.0"
+  }
+}

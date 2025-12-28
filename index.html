@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>solidos-lite Demo</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mashlib/dist/mash.css" />
+  <script src="https://cdn.jsdelivr.net/npm/mashlib/dist/mashlib.min.js"></script>
+  <script src="./solidos-lite.js"></script>
+  <style>
+    :root {
+      --primary: #7C3AED;
+      --secondary: #2563EB;
+      --accent: #10B981;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, sans-serif;
+      background: #f8fafc;
+      min-height: 100vh;
+    }
+
+    .header {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 1.5rem 2rem;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+
+    .header p {
+      margin: 0.5rem 0 0 0;
+      opacity: 0.9;
+    }
+
+    .version {
+      display: inline-block;
+      background: var(--accent);
+      padding: 0.15rem 0.5rem;
+      border-radius: 10px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      margin-left: 0.5rem;
+      vertical-align: middle;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      margin-bottom: 1.5rem;
+      overflow: hidden;
+    }
+
+    .card-header {
+      background: #f1f5f9;
+      padding: 0.75rem 1rem;
+      font-weight: 600;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .card-body {
+      padding: 1rem;
+    }
+
+    .code {
+      background: #1e293b;
+      color: #e2e8f0;
+      padding: 1rem;
+      border-radius: 8px;
+      font-family: 'SF Mono', Monaco, monospace;
+      font-size: 0.85rem;
+      overflow-x: auto;
+      white-space: pre;
+    }
+
+    .browser-area {
+      min-height: 300px;
+    }
+
+    .browser-area .TabulatorOutline {
+      padding: 0.5rem;
+    }
+
+    .status {
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .status.success {
+      background: #d1fae5;
+      color: #065f46;
+    }
+
+    .status.info {
+      background: #dbeafe;
+      color: #1e40af;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 2rem;
+      color: #64748b;
+      font-size: 0.85rem;
+    }
+
+    .footer a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+<!-- DATA ISLAND: Embedded RDF - no network request needed! -->
+<script type="text/turtle" id="profile-data">
+@prefix : <#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <http://schema.org/> .
+
+:me
+    a foaf:Person, schema:Person ;
+    foaf:name "Tim Berners-Lee" ;
+    foaf:givenName "Timothy" ;
+    foaf:familyName "Berners-Lee" ;
+    foaf:nick "timbl" ;
+    foaf:img <https://timbl.solidcommunity.net/profile/TBL%20by%20coz%20Solid%20purple.png> ;
+    foaf:homepage <https://www.w3.org/People/Berners-Lee/> ;
+    schema:jobTitle "Inventor of the Web" ;
+    rdfs:comment "This profile is loaded from a data island embedded in the HTML - no server request!" ;
+    foaf:knows :alice, :bob .
+
+:alice
+    a foaf:Person ;
+    foaf:name "Alice" .
+
+:bob
+    a foaf:Person ;
+    foaf:name "Bob" .
+</script>
+
+<header class="header">
+  <h1>solidos-lite <span class="version" id="version">v0.0.1</span></h1>
+  <p>Lightweight SolidOS with data island support</p>
+</header>
+
+<div class="container">
+
+  <div class="status success" id="status">Initializing...</div>
+
+  <div class="card">
+    <div class="card-header">Usage</div>
+    <div class="card-body">
+      <div class="code">&lt;!-- 1. Load mashlib --&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/mashlib/dist/mashlib.min.js"&gt;&lt;/script&gt;
+
+&lt;!-- 2. Load solidos-lite --&gt;
+&lt;script type="module"&gt;
+  import { init } from './solidos-lite.js'
+  init({ verbose: true })
+&lt;/script&gt;
+
+&lt;!-- 3. Embed your data --&gt;
+&lt;script type="text/turtle"&gt;
+@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .
+&lt;#me&gt; a foaf:Person ; foaf:name "Alice" .
+&lt;/script&gt;</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">Live Demo - Profile from Data Island</div>
+    <div class="card-body browser-area">
+      <div class="TabulatorOutline" id="DummyUUID" role="main">
+        <table id="outline"></table>
+        <div id="GlobalDashboard"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">How It Works</div>
+    <div class="card-body">
+      <div class="status info">
+        <strong>Data Island:</strong> RDF is embedded in a <code>&lt;script type="text/turtle"&gt;</code> tag<br><br>
+        <strong>Shim:</strong> Intercepts <code>fetcher.load()</code> to check for local data first<br><br>
+        <strong>Result:</strong> No CORS, no network latency, works offline
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer class="footer">
+  <a href="https://github.com/solid-lite/solidos-lite">GitHub</a> |
+  <a href="https://www.npmjs.com/package/solidos-lite">npm</a> |
+  <a href="https://solid-docs.github.io/docs/">SolidOS Docs</a>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const statusEl = document.getElementById('status')
+  const versionEl = document.getElementById('version')
+
+  versionEl.textContent = 'v' + SolidOSLite.VERSION
+
+  // Initialize the shim FIRST
+  const success = SolidOSLite.init({ verbose: true })
+
+  if (!success) {
+    statusEl.textContent = 'Failed to initialize. Check console.'
+    statusEl.className = 'status'
+    statusEl.style.background = '#fee2e2'
+    statusEl.style.color = '#991b1b'
+    return
+  }
+
+  // Pre-parse all data islands into the store
+  const count = SolidOSLite.parseAllIslands()
+  console.log('Pre-parsed', count, 'data islands')
+
+  statusEl.textContent = 'solidos-lite initialized. ' + count + ' data island(s) loaded.'
+
+  // Now navigate to the embedded profile
+  const pageBase = window.location.href.split('?')[0].split('#')[0]
+  const pageBaseNoSlash = pageBase.replace(/\/$/, '')
+  const profileURI = pageBase + '#me'
+  const subject = $rdf.sym(profileURI)
+
+  // Mark the document as already fetched in all URI variations
+  const fetcher = SolidLogic.store.fetcher
+  fetcher.requested[pageBase] = 'done'
+  fetcher.requested[pageBaseNoSlash] = 'done'
+  fetcher.requested[pageBase + '/'] = 'done'
+
+  // Also set the nowOrWhenFetched callback style
+  fetcher.nowOrWhenFetched = (function(original) {
+    return function(uri, options, callback) {
+      const u = typeof uri === 'string' ? uri : uri.value || uri.uri
+      const uNorm = u.replace(/\/$/, '')
+      if (uNorm === pageBaseNoSlash) {
+        if (callback) callback(true, null)
+        return Promise.resolve(true)
+      }
+      return original.call(fetcher, uri, options, callback)
+    }
+  })(fetcher.nowOrWhenFetched.bind(fetcher))
+
+  const outliner = panes.getOutliner(document)
+  outliner.GotoSubject(subject, true, undefined, true, undefined)
+})
+</script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tim Berners-Lee (JSON-LD)</title>
+  <link rel="icon" href="https://solidproject.org/assets/img/favicon.ico">
+  <script src="./solidos-lite.js"></script>
+</head>
+<body>
+
+<!-- Data Island: JSON-LD format -->
+<script type="application/ld+json">
+{
+  "@context": {
+    "foaf": "http://xmlns.com/foaf/0.1/",
+    "schema": "http://schema.org/",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#"
+  },
+  "@graph": [
+    {
+      "@id": "#me",
+      "@type": ["foaf:Person", "schema:Person"],
+      "foaf:name": "Tim Berners-Lee",
+      "foaf:givenName": "Timothy",
+      "foaf:familyName": "Berners-Lee",
+      "foaf:nick": "timbl",
+      "foaf:img": { "@id": "https://timbl.solidcommunity.net/profile/TBL%20by%20coz%20Solid%20purple.png" },
+      "foaf:homepage": { "@id": "https://www.w3.org/People/Berners-Lee/" },
+      "foaf:workplaceHomepage": { "@id": "https://www.w3.org/" },
+      "schema:jobTitle": "Inventor of the World Wide Web",
+      "rdfs:comment": "This profile loaded from a JSON-LD data island!",
+      "foaf:knows": [
+        { "@id": "#alice" },
+        { "@id": "#bob" }
+      ]
+    },
+    {
+      "@id": "#alice",
+      "@type": "foaf:Person",
+      "foaf:name": "Alice"
+    },
+    {
+      "@id": "#bob",
+      "@type": "foaf:Person",
+      "foaf:name": "Bob"
+    }
+  ]
+}
+</script>
+
+<!-- SolidOS Container -->
+<div class="TabulatorOutline" id="DummyUUID" role="main">
+  <table id="outline"></table>
+  <div id="GlobalDashboard"></div>
+</div>
+
+</body>
+</html>

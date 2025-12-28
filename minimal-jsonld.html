@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Tim Berners-Lee (JSON-LD)</title>
+  <script src="./solidos-lite.js"></script>
+</head>
+<body>
+
+<script type="application/ld+json">
+{
+  "@context": {
+    "foaf": "http://xmlns.com/foaf/0.1/",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#"
+  },
+  "@id": "#me",
+  "@type": "foaf:Person",
+  "foaf:name": "Tim Berners-Lee",
+  "foaf:img": { "@id": "https://timbl.solidcommunity.net/profile/TBL%20by%20coz%20Solid%20purple.png" },
+  "rdfs:comment": "Minimal JSON-LD example - no build step, no chunks!"
+}
+</script>
+
+<div class="TabulatorOutline" id="DummyUUID" role="main">
+  <table id="outline"></table>
+  <div id="GlobalDashboard"></div>
+</div>
+
+</body>
+</html>
