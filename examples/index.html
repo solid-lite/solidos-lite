@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>solidos-lite Examples</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem;
+      background: #f8fafc;
+    }
+    h1 { color: #1e293b; }
+    p.intro { color: #64748b; font-size: 1.1rem; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    }
+    .card h2 {
+      margin: 0 0 0.5rem 0;
+      color: #7c3aed;
+      font-size: 1.25rem;
+    }
+    .card p {
+      margin: 0;
+      color: #64748b;
+      font-size: 0.9rem;
+    }
+    .card .vocab {
+      margin-top: 0.75rem;
+      font-size: 0.8rem;
+      color: #94a3b8;
+      font-family: monospace;
+    }
+    footer {
+      margin-top: 3rem;
+      text-align: center;
+      color: #94a3b8;
+      font-size: 0.85rem;
+    }
+    footer a { color: #7c3aed; }
+  </style>
+</head>
+<body>
+
+<h1>solidos-lite Examples</h1>
+<p class="intro">
+  Self-contained HTML files with embedded RDF data islands.
+  No server required - just open in a browser.
+</p>
+
+<div class="grid">
+  <a class="card" href="person.html#me">
+    <h2>Person Profile (JSON-LD)</h2>
+    <p>Profile with photo, links, and social connections</p>
+    <div class="vocab">foaf:Person, vcard</div>
+  </a>
+
+  <a class="card" href="bookmarks.html#bookmarks">
+    <h2>Bookmarks (Turtle)</h2>
+    <p>Organized collection of links by topic</p>
+    <div class="vocab">book:Bookmark</div>
+  </a>
+</div>
+
+<footer>
+  <a href="https://github.com/solid-lite/solidos-lite">solidos-lite</a> |
+  Just HTML + data islands + one script tag
+</footer>
+
+</body>
+</html>

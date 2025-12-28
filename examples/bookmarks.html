@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>My Bookmarks</title>
+</head>
+<body>
+
+<script type="text/turtle">
+@prefix : <#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix book: <http://www.w3.org/2002/01/bookmark#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+
+:bookmarks a book:Bookmark ;
+    dc:title "Solid Resources" ;
+    dc:description "Useful links for Solid development" ;
+    book:hasTopic :solid, :rdf, :web .
+
+:solid a book:Topic ;
+    dc:title "Solid" ;
+    book:recalls
+        [ a book:Bookmark ; dc:title "Solid Project" ; book:recalls <https://solidproject.org/> ],
+        [ a book:Bookmark ; dc:title "SolidOS" ; book:recalls <https://github.com/SolidOS/> ],
+        [ a book:Bookmark ; dc:title "Solid Docs" ; book:recalls <https://solid-docs.github.io/docs/> ] .
+
+:rdf a book:Topic ;
+    dc:title "RDF & Linked Data" ;
+    book:recalls
+        [ a book:Bookmark ; dc:title "RDF Primer" ; book:recalls <https://www.w3.org/TR/rdf-primer/> ],
+        [ a book:Bookmark ; dc:title "JSON-LD" ; book:recalls <https://json-ld.org/> ],
+        [ a book:Bookmark ; dc:title "Turtle" ; book:recalls <https://www.w3.org/TR/turtle/> ] .
+
+:web a book:Topic ;
+    dc:title "Web Standards" ;
+    book:recalls
+        [ a book:Bookmark ; dc:title "W3C" ; book:recalls <https://www.w3.org/> ],
+        [ a book:Bookmark ; dc:title "MDN Web Docs" ; book:recalls <https://developer.mozilla.org/> ] .
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/solidos-lite@0.0.2/solidos-lite.js"></script>
+
+</body>
+</html>
