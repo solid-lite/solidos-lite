@@ -11,7 +11,7 @@
 (function(global) {
 'use strict';
 
-const VERSION = '0.0.3'
+const VERSION = '0.0.4'
 
 // Load mashlib from CDN
 const MASHLIB_JS = 'https://cdn.jsdelivr.net/npm/mashlib/dist/mashlib.min.js'
@@ -61,9 +61,24 @@ function loadMashlib() {
  * Handles basic JSON-LD without remote contexts
  */
 function jsonldToTurtle(jsonld, baseUri) {
-  const ctx = jsonld['@context'] || {}
+  let ctx = jsonld['@context'] || {}
   const lines = []
   const prefixes = {}
+
+  // Handle string context (remote URL - can't process without fetch)
+  if (typeof ctx === 'string') {
+    console.warn('solidos-lite: Remote @context not supported, use inline context object')
+    ctx = {}
+  }
+
+  // Handle array context (merge objects)
+  if (Array.isArray(ctx)) {
+    const merged = {}
+    ctx.forEach(c => {
+      if (typeof c === 'object') Object.assign(merged, c)
+    })
+    ctx = merged
+  }
 
   // Collect prefixes from context
   Object.keys(ctx).forEach(key => {
